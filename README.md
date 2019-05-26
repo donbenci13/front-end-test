@@ -44,8 +44,7 @@ A possible layout could be:
 
 ```
 $ npm install
-$ npm start
-$ npm run build
+$ npm run dev
 ```
 
 ## API endpoints / examples
