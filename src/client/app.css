@@ -1,0 +1,39 @@
+h1{
+    font-size:24px;
+    text-align: center;
+}
+body{
+    background-color:#5755d9
+}
+.wrapper{
+    max-width:480px;
+    margin:0 auto;
+    margin-top: 24px;
+    box-shadow: 0px 0px 4px 1px #3c3c3c;
+    background-color: #fff;
+    border-radius: 21px;
+    padding:12px;
+}
+
+.panel{
+    border:0;
+}
+
+.menu .menu-badge .label{
+    margin:0;
+    padding:8px;
+}
+
+.h1{
+    font-size:24px;
+    font-weight: bold;
+}
+
+.menu.list .menu-item{
+    border-bottom: 1px solid #eee;
+    padding: 12px 0;
+}
+
+.body-panel{
+    padding:12px;
+}
