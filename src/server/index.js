@@ -73,4 +73,4 @@ app.post("/api/v1/counter/dec", function(req, res) {
 // app.head("*", sendFile("index.html"));
 
 // app.listen(PORT, ()=>console.log.bind(null, "PORT: " + PORT));
-app.listen(process.env.PORT, () => console.log(`Listening on port ${process.env.PORT || 8080}!`));
+app.listen(process.env.PORT || 8080, () => console.log(`Listening on port ${process.env.PORT || 8080}!`));

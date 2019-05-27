@@ -1,80 +1,20 @@
 import React, { useEffect, useState } from 'react';
+import ComputeTotal from './components/total'
+import InputForm from './components/input'
 import './app.css'
+
 const getCounters = async () => {
   return await fetch('/api/v1/counters')
     .then(res => res.json())
 }
 
-function ComputeTotal({ counters }) {
-
-  //
-  //sum of all the counter values
-  //
-  const addCounts = () => {
-    return counters.reduce((amount, next) => {
-      return amount + next.count
-    }, 0)
-  }
-
-  return (
-    <div className="menu">
-      <div className="menu-item">
-        <span>Total Count:</span>
-        <div className="menu-badge">
-          <label className="label label-primary"> {addCounts()}</label>
-        </div>
-      </div>
-    </div>
-
-
-
-  )
-
-}
-function InputForm() {
-  const [title, setTitle] = useState('')
-
-  const submitHandler = (event) => {
-    event.preventDefault()
-    fetch('/api/v1/counter', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ title })
-    }).then(data => {
-      if (data.status != 200) {
-        console.error('Something went wrong!')
-      }
-
-      console.log('Successfully created an item!')
-      setTitle('')
-    })
-  }
-
-  return (
-    <form className="columns form-group">
-      <div className="column col-10">
-        <input className="form-input" id="inputName" type="text"
-          value={title}
-          onChange={e => setTitle(e.target.value)}
-          placeholder="input name here" />
-        </div>
-      <div className="column col-2 text-right">      
-        <button className="btn" id="submitHandler" onClick={submitHandler}>add</button>
-      </div>
-    </form>
-  )
-}
-
 function App() {
   const [counters, setCounter] = useState([])
-
-  //**
-  //  * Delete Item
-  //  * @param {} id 
-  //  */
-
+  
+  /**
+    * Delete Item
+    * @param {string} id
+    */
   const deleteCounter = (id) => {
     fetch('/api/v1/counter', {
       method: 'DELETE',
@@ -87,10 +27,10 @@ function App() {
     })
   }
 
-  //**
-  //  * Increment Counter Value
-  //  * @param {} id 
-  //  */
+  /**
+    * Increment Counter Value
+    * @param {string} id
+    */
   const incCounter = (id) => {
     fetch('/api/v1/counter/inc', {
       method: 'POST',
@@ -102,10 +42,11 @@ function App() {
       data.status == 200 ? console.log(`Successfully Updated id: ${id}`) : console.error('Something went wrong!')
     })
   }
-  //**
-  //  * Decrement Counter Value
-  //  * @param {} id 
-  //  */
+
+  /**
+    * Decrement Counter Value
+    * @param {string} id 
+    */
   const decCounter = (id) => {
     fetch('/api/v1/counter/dec', {
       method: 'POST',
@@ -128,18 +69,17 @@ function App() {
     <div className="panel">
       <div className="panel-header">
         <div className="panel-title text-center">
-          <h1>Counter App</h1>
+          <h1>COUNTER APP</h1>
         </div>
         <div className="text-center">
-
-        <InputForm />
-
-      </div>
+          <InputForm />
+        </div>
       </div>
       
       <div className="body-panel">
-        <div className="menu list">
-          {counters.length ? counters.map(({ id, title, count }, index) => (
+        <div className="{counters.length > 0 ? 'menu list' : ''}">
+          {counters.length ? 
+          counters.map(({ id, title, count }, index) => (
             <div className="menu-item" key={index}>
               <div className="columns">
                 <div className="column col-2">
@@ -148,7 +88,7 @@ function App() {
                 <div className="column col-6">
                   {title}
                 </div>
-                <div className="column col-4">
+                <div className="column col-4 text-right">
                   <div className="menu-badge">
                     <button className="btn" onClick={() => decCounter(id)}><i className="icon icon-minus"></i></button>
                     <label className="label label-primary"> {count}</label>
@@ -161,9 +101,11 @@ function App() {
         </div>
 
       </div>
-      <div className="panel-footer">
-        {counters.length ? <ComputeTotal counters={counters} /> : null}
-      </div>
+        {counters.length > 0 ? 
+          <div className="panel-footer">
+            <ComputeTotal counters={counters} /> 
+          </div>
+        : null}
     </div>
   );
 
