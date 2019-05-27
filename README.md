@@ -7,7 +7,7 @@ $ npm install
 $ npm run dev
 ```
 
-You need to create a simple counter application that can do the following:
+Features:
 
 [x] Add a named counter to a list of counters 
 
@@ -19,7 +19,7 @@ You need to create a simple counter application that can do the following:
 
 [x] Show a sum of all the counter values
 
-[x] It must persist data back to the server
+[x] Persist data back to the server
 
 ![Image of Counter App](https://firebasestorage.googleapis.com/v0/b/east-kings.appspot.com/o/Screenshot_1.jpg?alt=media&token=595ceef3-03a7-4546-b61e-2d1a0fca06f8)
 
